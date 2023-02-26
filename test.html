@@ -26,9 +26,16 @@
       <li class="list-group-item">Item 2</li>
       <li class="list-group-item" style="background-color:green">Item 3</li>
       <li class="list-group-item">Item 4</li>
+      <li class="list-group-item">Item 5</li>
     </ul>
    </div>
   </div>
+<script>
+    const collection=document.getElementsByClassName("list-group-item");
+    collection[0].style.backgroundColor="red";
 
+    const collection1=document.getElementsByTagName("li");
+    collection1[1].style.backgroundColor="yellow";
+</script>
 </body>
 </html>
