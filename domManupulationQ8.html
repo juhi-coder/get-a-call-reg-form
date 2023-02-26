@@ -24,16 +24,16 @@
         <h2 class="title">Add Items</h2>
         <form id="addForm" class="form-inline mb-3">
           <input type="text" class="form-control mr-2" id="item">
-          <input type="text" class="form-control mr-2" id="item">
+          
 
           <input type="submit" class="btn btn-dark" value="Submit">
         </form>
         <h2 class="title">Items</h2>
         <ul id="items" class="list-group">
-          <li class="list-group-item">Item 1 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-danger btn-sm float-right edit">edit</button></li>
-          <li class="list-group-item">Item 2 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-danger btn-sm float-right edit">edit</button></li>
-          <li class="list-group-item">Item 3 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-danger btn-sm float-right edit">edit</button></li>
-          <li class="list-group-item">Item 4 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-danger btn-sm float-right edit">edit</button></li>
+          <li class="list-group-item">Item 1 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-danger btn-sm float-right edit" id="edit">edit</button></li>
+          <li class="list-group-item">Item 2 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-danger btn-sm float-right edit"  id="edit">edit</button></li>
+          <li class="list-group-item">Item 3 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-danger btn-sm float-right edit"  id="edit">edit</button></li>
+          <li class="list-group-item">Item 4 <button class="btn btn-danger btn-sm float-right delete">X</button><button class="btn btn-danger btn-sm float-right edit"  id="edit">edit</button></li>
         </ul>
        </div>
       </div>
@@ -44,9 +44,14 @@ var filter = document.getElementById('filter');
 
 // Form submit event
 form.addEventListener('submit', addItem);
-form.addEventListener('submit', addItem1);
+
 // Delete event
 itemList.addEventListener('click', removeItem);
+
+// edit event
+itemList.addEventListener('click', editItem);
+
+
 // Filter event
 filter.addEventListener('keyup', filterItems);
 
@@ -56,17 +61,15 @@ function addItem(e){
   
   // Get input value
   var newItem = document.getElementById('item').value;
-  var newItem1 = document.getElementById('item').value;
+  
   // Create new li element
   var li = document.createElement('li');
-  var li = document.createElement('li');
+ 
   // Add class
-  li.className = 'list-group-item';
   li.className = 'list-group-item';
   // Add text node with input value
   li.appendChild(document.createTextNode(newItem));
-  li.appendChild(document.createTextNode(newItem1));
-
+  
   // Create del button element
   var deleteBtn = document.createElement('button');
 
@@ -81,6 +84,21 @@ function addItem(e){
 
   // Append li to list
   itemList.appendChild(li);
+
+  // Create del button element
+  var editBtn = document.createElement('button');
+
+  // Add classes to del button
+  editBtn.className = 'btn btn-danger btn-sm float-right edit';
+
+  // Append text node
+  editBtn.appendChild(document.createTextNode('edit'));
+
+  // Append button to li
+  li.appendChild(editBtn);
+
+  // Append li to list
+  itemList.appendChild(li);
 }
 
 // Remove item
@@ -89,6 +107,15 @@ function removeItem(e){
     if(confirm('Are You Sure?')){
       var li = e.target.parentElement;
       itemList.removeChild(li);
+    }
+  }
+}
+
+function editItem(e){
+  if(e.target.classList.contains('edit')){
+    if(confirm('Are You Sure?')){
+      var li = e.target.parentElement;
+      itemList.contentEditable=true;
     }
   }
 }
