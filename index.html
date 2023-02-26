@@ -12,7 +12,7 @@
     </header>
 
     <section class="container">
-      <form id="my-form">
+      <form id="my-form" onsubmit="saveToLocalStorage(event)">
         <h1>Add User</h1>
         <div class="msg"></div>
         <div>
@@ -44,22 +44,24 @@
       
     </section>
     <script>
-      const btn=document.querySelector('.btn');
-      btn.addEventListener('mouseover',(e) =>
-      {
-        e.preventDefault();
-        document.querySelector('#my-form').style.background='green';
-        document.querySelector('body').classList.add('bg-dark');
-        
-      });
 
-      btn.addEventListener('mouseout',(e) =>
-      {
-        e.preventDefault();
-        document.querySelector('#my-form').style.background='green';
-        document.querySelector('body').classList.add('bg-dark');
-        
-      });
+function saveToLocalStorage(event){
+        event.preventDefault();
+        const a=event.target.name.value;
+        const d=event.target.email.value;
+        const f=event.target.phone.value;
+        const g=event.target.date.value;
+        const obj={
+            a,
+            d,
+            f,
+            g
+        }
+        localStorage.setItem(obj.d,JSON.stringify(obj))
+        showDetails(obj)
+    }
+
+
     </script>
     <style>
       * {
