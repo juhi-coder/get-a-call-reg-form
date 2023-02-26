@@ -17,25 +17,27 @@
    <div id="main" class="card card-body">
     <h2 class="title">Add Items</h2>
     <form class="form-inline mb-3">
-      <input type="text" class="form-control mr-2" style="font-weight:bold">
+      <input type="text" class="form-control mr-2">
       <input type="submit" class="btn btn-dark" value="Submit">
     </form>
     <h2 class="title">Items</h2>
     <ul id="items" class="list-group">
       <li class="list-group-item">Item 1</li>
       <li class="list-group-item">Item 2</li>
-      <li class="list-group-item" style="background-color:green">Item 3</li>
+      <li class="list-group-item">Item 3</li>
       <li class="list-group-item">Item 4</li>
-      <li class="list-group-item">Item 5</li>
     </ul>
    </div>
   </div>
 <script>
-    const collection=document.getElementsByClassName("list-group-item");
-    collection[0].style.backgroundColor="red";
+  var secItem=document.querySelectorAll('li');
+  secItem[1].style.color="green";
 
-    const collection1=document.getElementsByTagName("li");
-    collection1[1].style.backgroundColor="yellow";
+    var odd=document.querySelectorAll('li:nth-child(odd)');
+    for(let i=0;i<odd.length;i++)
+    {
+        odd[i].style.backgroundColor="green";
+    }
 </script>
 </body>
 </html>
