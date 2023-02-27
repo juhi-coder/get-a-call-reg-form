@@ -25,7 +25,7 @@
          <button id="btn">Get a call</button>
         </form>
     </section>
-
+    <ul id="print"></ul>
     <script>
         function saveToLocalStorage(event)
         {
@@ -37,8 +37,24 @@
                 name,email,phone,date
             }
             localStorage.setItem(obj.btn,JSON.stringify(obj));
-            
+            showDetails(obj);
         }
+
+        function showDetails(obj)
+        {
+            const p=document.getElementById('print')
+    const c=document.createElement('li')
+    c.textContent=obj.name+'-'+obj.email+'-'+obj.phone+'-'+obj.date
+
+            const DeleteItem=document.createElement('input')
+        DeleteItem.type='button'
+        DeleteItem.value='Delete'
+        DeleteItem.onclick=()=>{
+            localStorage.removeItem(obj.btn)
+            p.removeChild(c)
+
+        }
+        c.appendChild(DeleteItem);
     </script>
 </body>
 </html>

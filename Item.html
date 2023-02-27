@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpanseTracker</title>
+</head>
+<body>
+    <header><h2>Expanse tracker</h2></header>
+    <section>
+        <form onsubmit="saveToLocalStorage(event)">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="a">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" class="b">
+            <label for="phone">Phone</label>
+            <input type="phone" id="phone" name="phone" class="c">
+            <label for="date">Date</label>
+            <input type="datetime-local" id="date" name="date" class="d">
+                <button id="f">Get A Call</button>
+        </form>
+        <div>
+             <ul id="print"></ul>
+        </div>
+       </section>
+    </body>
+    <script>
+        function saveToLocalStorage(event){
+            event.preventDefault();
+            const a=event.target.name.value;
+            const d=event.target.email.value;
+            const f=event.target.phone.value;
+            const e=event.target.date.value;
+            const obj={
+                a,
+                d,
+                f,
+                e
+            }
+            localStorage.setItem(obj.d,JSON.stringify(obj))
+            showDetails(obj)
+        }
+       function showDetails(obj){
+        const p=document.getElementById('print')
+        const c=document.createElement('li')
+        c.textContent=obj.a+'-'+obj.d+'-'+obj.f
+            const DeleteItem=document.createElement('input')
+            DeleteItem.type='button'
+            DeleteItem.value='Delete'
+            DeleteItem.onclick=()=>{
+                localStorage.removeItem(obj.d)
+                p.removeChild(c)
+            }
+    
+            const EditItem=document.createElement('input')
+            EditItem.type='button'
+            EditItem.value='Edit'
+            EditItem.onclick=()=>{
+                localStorage.removeItem(obj.d)
+                p.removeChild(c)
+            document.getElementById('name').value=obj.a;
+            document.getElementById('email').value=obj.d;
+            document.getElementById('phone').value=obj.f;
+        document.getElementById('date').value=obj.e;
+
+        }
+        c.appendChild(DeleteItem);
+        c.appendChild(EditItem);
+        p.appendChild(c);
+
+   }
+</script>
+</html>
