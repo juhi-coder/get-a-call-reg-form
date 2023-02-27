@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>Get a call</header>
+    <section>
+        <form onsubmit="saveToLocalStorage(event)">
+         <label for="name">Name</label>
+         <input type="text" id="name" class="name">
+
+         <label for="email">Email</label>
+         <input type="text" id="email" class="email">
+
+         <label for="phone">Phone</label>
+         <input type="text" id="phone" class="phone">
+
+         <label for="date">Date</label>
+         <input type="datetime-local" id="date" class="date">
+
+         <button id="btn">Get a call</button>
+        </form>
+    </section>
+
+    <script>
+        function saveToLocalStorage(event)
+        {
+            const name=event.target.name.value;
+            const email=event.target.email.value;
+            const phone=event.target.phone.value;
+            const date=event.target.date.value;
+            const obj={
+                name,email,phone,date
+            }
+            localStorage.setItem(obj.btn,JSON.stringify(obj));
+            
+        }
+    </script>
+</body>
+</html>
