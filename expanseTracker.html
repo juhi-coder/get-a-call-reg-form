@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expanse Tracker</title>
+</head>
+<body>
+    <section>
+        <form onsubmit="saveToLocalStorage(event)">
+            <label for="Amount">Amount</label>
+            <input type="number" id="Amount" name="paisa" class="a">
+            <label for="disc">Write discription</label>
+            <input type="text" id="disc" name="exmaple" class="b">
+            <label for="detail">Write detail</label>
+            <input list="details" id="detail" name="detail" class="c">
+                <datalist id="details">
+                    <option value="Chocolate">
+                    <option value="movie">
+                    <option value="fuel">
+                    <option value="tea">
+                    <option value="cold drink">
+                </datalist>
+                <button id="f">NewExpenses are:</button>
+        </form>
+        <div>
+            <h2>total expanse list</h2>
+             <ol id="print"></ol>
+        </div>
+       
+    </section>
+    <script>
+        function saveToLocalStorage(event){
+    event.preventDefault();
+    const a=event.target.Amount.value;
+    const d=event.target.disc.value;
+    const f=event.target.detail.value;
+    const obj={
+        a,
+        d,
+        f
+    }
+    localStorage.setItem(obj.d,JSON.stringify(obj))
+    showDetails(obj)
+}
+function showDetails(obj){
+const p=document.getElementById('print')
+const c=document.createElement('li')
+c.textContent=obj.a+'-'+obj.d+'-'+obj.f
+    const DeleteItem=document.createElement('input')
+    DeleteItem.type='button'
+    DeleteItem.value='Delete'
+    DeleteItem.onclick=()=>{
+        localStorage.removeItem(obj.d)
+        p.removeChild(c)
+    }
+
+    const EditItem=document.createElement('input')
+    EditItem.type='button'
+    EditItem.value='Edit'
+    EditItem.onclick=()=>{
+        localStorage.removeItem(obj.d)
+        p.removeChild(c)
+    document.getElementById('Amount').value=obj.a;
+    document.getElementById('disc').value=obj.d;
+    document.getElementById('detail').value=obj.f;
+
+    }
+    c.appendChild(DeleteItem);
+    c.appendChild(EditItem);
+    p.appendChild(c);
+
+}
+    </script>
+</body>
+</html>
